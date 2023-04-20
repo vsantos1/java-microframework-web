@@ -1,0 +1,7 @@
+GET http://localhost:8080/files?name=1.jpg
+Accept: image/jpeg
+
+### Categories
+
+GET http://localhost:8080/home
+Accept: application/json
