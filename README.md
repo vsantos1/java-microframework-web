@@ -1,22 +1,37 @@
-# Web legacy project with JavaEE
+# Web micro-framework with Servlet
 
 <div align="center">
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" width="128" />
 </div>
 
-## Project description
+## Project description (en-US)
 
-This project is a web legacy project with JavaEE,
-it is a web application that allows you to manage products and customers.
-With the good practices of the MVC pattern, it is a project that allows you to learn the basics of how the
-MVC pattern works and how to implement it in any web application.
+This project is a **web micro-framework** with ServletAPI.
+Very simple micro-framework that allows built a web API with new features.
+This project was developed for learn purposes, not meant to be used in production.
 
-I made it to learn and remember how old web applications were made, and how to implement old technologies in new
-projects.
+- Provides Response builder, Web Standard enums, Crud interface for database access, routing, JSON parser, file upload
+  (**DISK ONLY**) and more.
+- Provides a simple way to create a web application for study cases.
+
+- ⚠️ **WARNING**: This project is not meant to be used in production, it is only for study purposes.
+
+## Descrição do projeto (pt-BR)
+
+Este projeto é um **micro-framework** web com a API Servlet. É um micro-framework muito simples que permite construir
+uma API web com novos recursos. Este projeto foi desenvolvido para fins de aprendizagem e não é destinado a ser usado em
+produção.
+
+- Fornece um construtor de resposta, enums padrão da Web, interface Crud para acesso ao banco de dados, roteamento,
+  parser JSON, upload de arquivo (APENAS EM DISCO) e muito mais.
+
+- Fornece uma maneira simples de criar uma aplicação web para fins didáticos.
+
+⚠️ ATENÇÃO: Este projeto não é destinado a ser usado em produção, é apenas para fins de estudo.
 
 # Technologies used in this project
 
-- [x] [JavaEE](https://www.oracle.com/java/technologies/java-ee-glance.html)
+- [x] [Servlet](https://jakarta.ee/specifications/servlet/4.0/apidocs/)
 - [x] [JSP](https://www.oracle.com/java/technologies/java-ee-glance.html)
 - [x] [jQuery](https://jquery.com/)
 - [x] [Bootstrap](https://getbootstrap.com/)
@@ -31,16 +46,14 @@ projects.
 
 ## Features
 
-### Database tables
+### Database tables (MySQL)
 
 - [x] Categories
 - [x] Products
-- [x] Customers
-- [x] Addresses
-- [x] Orders
-- [x] Payments
-
-# This project is MVC pattern
+- [ ] Customers
+- [ ] Addresses
+- [ ] Orders
+- [ ] Payments
 
 ### Just configure your database and run the application
 
