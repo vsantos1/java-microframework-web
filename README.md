@@ -23,7 +23,7 @@ uma API web com novos recursos. Este projeto foi desenvolvido para fins de apren
 produção.
 
 - Fornece um construtor de resposta, enums padrão da Web, interface Crud para acesso ao banco de dados, roteamento,
-  parser JSON, upload de arquivo (APENAS EM DISCO) e muito mais.
+  parser JSON, envio de arquivos (APENAS EM DISCO) e muito mais.
 
 - Fornece uma maneira simples de criar uma aplicação web para fins didáticos.
 
