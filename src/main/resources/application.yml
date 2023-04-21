@@ -1,9 +1,10 @@
 dialect: org.hibernate.dialect.MySQL5Dialect
+driverClassName: com.mysql.cj.jdbc.Driver
 host: localhost
 port: 3306
 username: root
 password:
 url: jdbc:mysql://localhost:3306/hireme?serverTimezone=UTC
 ddl: update
-formatSql: true
+formatSql: false
 showSql: true
