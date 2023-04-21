@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0.23
+    container_name: hireme-db
+    env_file:
+      - .env
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306:3306"
