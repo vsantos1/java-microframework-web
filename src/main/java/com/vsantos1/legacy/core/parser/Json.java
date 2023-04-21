@@ -1,4 +1,4 @@
-package com.vsantos1.legacy.core.json;
+package com.vsantos1.legacy.core.parser;
 
 import com.google.gson.Gson;
 
