@@ -30,6 +30,7 @@
 
 package com.vsantos1.legacy.core.upload;
 
+import com.vsantos1.legacy.core.enums.HttpStatus;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
@@ -129,6 +130,21 @@ public class FileUpload {
     }
 
     /**
+     * @param folderName String
+     * @param fileName   String
+     * @param part       Part
+     */
+    protected void execute(String folderName, String fileName, Part part, boolean unique) {
+        fileName = this.generateUniqueFilename(unique, fileName);
+
+        this.setPathContext(folderName);
+
+        this.createDirectory(this.uploadDir);
+
+        this.saveFile(fileName, part);
+    }
+
+    /**
      * @param parts       Collection<Part>
      * @param folderName  String
      * @param unique      boolean
@@ -168,17 +184,8 @@ public class FileUpload {
         // Check if the file size is allowed
         this.isSizeAllowed(part, maxFileSize);
 
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
-
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        // Create the upload directory if it does not exist
-        this.createDirectory(this.uploadDir);
-
-        // Save the file
-        this.saveFile(fileName, part);
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
 
     }
 
@@ -203,18 +210,11 @@ public class FileUpload {
         // Check if the file size is allowed
         this.isSizeAllowed(part, maxFileSize);
 
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
+        // Check if the file size is allowed
+        this.isSizeAllowed(part, maxFileSize);
 
-
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        // Create the upload directory if it does not exist
-        this.createDirectory(this.uploadDir);
-
-        // Save the file
-        this.saveFile(fileName, part);
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
 
     }
 
@@ -241,17 +241,11 @@ public class FileUpload {
         this.isSizeAllowed(part, maxFileSize);
 
 
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
+        // Check if the file size is allowed
+        this.isSizeAllowed(part, maxFileSize);
 
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        // Create the upload directory if it does not exist
-        this.createDirectory(this.uploadDir);
-
-        // Save the file
-        this.saveFile(fileName, part);
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
 
     }
 
@@ -276,18 +270,8 @@ public class FileUpload {
         // Check if the file size is allowed
         this.isSizeAllowed(part, maxFileSize);
 
-
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
-
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        // Create the upload directory if it does not exist
-        this.createDirectory(this.uploadDir);
-
-        // Save the file
-        this.saveFile(fileName, part);
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
 
     }
 
@@ -307,15 +291,9 @@ public class FileUpload {
         // Get the filename and extension
         String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
 
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
 
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        this.createDirectory(this.uploadDir);
-
-        this.saveFile(fileName, part);
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
 
     }
 
@@ -340,19 +318,8 @@ public class FileUpload {
         // Check if the file size is allowed
         this.isSizeAllowed(part, maxFileSize);
 
-        // Generate a unique filename
-        fileName = this.generateUniqueFilename(unique, fileName);
-
-
-        // Save the file to disk
-        this.setPathContext(folderName);
-
-        // Create the upload directory if it does not exist
-        this.createDirectory(this.uploadDir);
-
-        // Save the file
-        this.saveFile(fileName, part);
-
+        // Do the magic
+        this.execute(folderName, fileName, part, unique);
     }
 
     public void downloadFileFromDisk(String fileName, HttpServletResponse response) throws IOException {
@@ -362,6 +329,7 @@ public class FileUpload {
 
         if (Files.exists(file)) {
             response.setContentType("application/octet-stream");
+            response.setStatus(HttpStatus.OK.getValue());
             response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
             try (InputStream in = Files.newInputStream(file)) {
