@@ -1,7 +1,7 @@
 package com.vsantos1.legacy.core.response;
 
 import com.vsantos1.legacy.core.enums.ContentType;
-import com.vsantos1.legacy.core.json.Json;
+import com.vsantos1.legacy.core.parser.Json;
 import com.vsantos1.legacy.core.enums.HttpStatus;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -23,10 +23,6 @@ public class ResponseBuilder<T> {
 
     public void build(HttpServletResponse response, ContentType contentType) throws IOException {
 
-        logger.info("Content-Type: " + contentType.getValue());
-        logger.info("Status: " + this.status.getValue());
-        logger.info("Body: " + this.body);
-
         this.execute(response, contentType);
     }
 
@@ -34,6 +30,7 @@ public class ResponseBuilder<T> {
         response.setStatus(this.status.getValue());
         response.setContentType(contentType.getValue());
         response.setCharacterEncoding(CHARSET_ENCODING);
+
 
         if (this.status == HttpStatus.NO_CONTENT || this.body == null) {
             return;
@@ -44,7 +41,6 @@ public class ResponseBuilder<T> {
             response.getOutputStream().close();
             return;
         }
-
 
         response.getWriter().write(Json.parseToJson(this.body));
         response.getWriter().close();
