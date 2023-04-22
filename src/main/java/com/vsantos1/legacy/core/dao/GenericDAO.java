@@ -45,6 +45,7 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
 
     }
 
+
     @Override
     public List<T> saveAll(List<T> entities, Class<T> clazz) {
         EntityManager em = getEntityManager();
@@ -57,9 +58,10 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
                 Object value = id.get(entity);
                 if (value == null) {
                     em.persist(entity);
-                } else {
-                    em.merge(entity);
+                    continue;
                 }
+
+                em.merge(entity);
             }
             em.getTransaction().commit();
             em.close();
@@ -76,12 +78,12 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
         em.getTransaction().begin();
 
         try {
-            List<T> entites = em.createQuery("SELECT e FROM " + clazz.getSimpleName() + " e", clazz).getResultList();
+            List<T> entities = em.createQuery("SELECT e FROM " + clazz.getSimpleName() + " e", clazz).getResultList();
             em.getTransaction().commit();
             em.close();
 
 
-            return entites;
+            return entities;
         } catch (Exception e) {
             throw new RuntimeException("Error retrieving data, cause ", e);
         }
@@ -109,6 +111,7 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
         }
     }
 
+    @Override
     public T findById(ID id, Class<T> clazz) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
