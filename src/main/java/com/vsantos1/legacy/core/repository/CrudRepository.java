@@ -14,7 +14,7 @@ public interface CrudRepository<T, ID> extends Repository<T, ID> {
 
     List<T> saveAll(List<T> entities, Class<T> entityClass);
 
-    List<T> findAll(Class<T> entityClass) throws ExecutionException, InterruptedException;
+    List<T> findAll(Class<T> entityClass);
 
     void delete(ID id, Class<T> entityClass);
 
