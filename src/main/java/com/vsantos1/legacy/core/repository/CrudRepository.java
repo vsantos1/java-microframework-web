@@ -2,6 +2,7 @@ package com.vsantos1.legacy.core.repository;
 
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface CrudRepository<T, ID> extends Repository<T, ID> {
 
@@ -11,7 +12,9 @@ public interface CrudRepository<T, ID> extends Repository<T, ID> {
 
     T findById(ID id, Class<T> entityClass);
 
-    List<T> findAll(Class<T> entityClass);
+    List<T> saveAll(List<T> entities, Class<T> entityClass);
+
+    List<T> findAll(Class<T> entityClass) throws ExecutionException, InterruptedException;
 
     void delete(ID id, Class<T> entityClass);
 
