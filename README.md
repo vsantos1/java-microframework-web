@@ -32,7 +32,7 @@ produção.
 # Technologies used in this project
 
 - [x] [Servlet](https://jakarta.ee/specifications/servlet/4.0/apidocs/)
-- [x] [JSP](https://www.oracle.com/java/technologies/java-ee-glance.html)
+- [x] [Java](https://www.java.com/)
 - [x] [jQuery](https://jquery.com/)
 - [x] [Bootstrap](https://getbootstrap.com/)
 - [x] [MySQL](https://www.mysql.com/)
@@ -46,14 +46,17 @@ produção.
 
 ## Features
 
-### Database tables (MySQL)
+- [x] Database connection
+- [x] Json serialization
+- [x] Json deserialization
+- [x] Generic DAO (Data Access Object) for database access
+- [x] Encryption handler
+- [x] Yaml configuration file
+- [x] Handle all File upload types (**Disk only**)
+- [x] Multiple Files upload (**Disk only**)
+- [x] Routing (Servlet)
+- [x] Response builder
 
-- [x] Categories
-- [x] Products
-- [ ] Customers
-- [ ] Addresses
-- [ ] Orders
-- [ ] Payments
+### ⚠️ **WARNING**: This project is not meant to be used in production, it is only for study purposes.
 
-### Just configure your database and run the application
-
+I made it for fun and to learn more about Java.
