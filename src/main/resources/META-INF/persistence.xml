@@ -5,18 +5,9 @@
              version="2.2">
 
     <persistence-unit name="HireMe">
-        <properties>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/hireme?serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.show_sql" value="true"/>
-
-        </properties>
+        <description>
+            This is the persistence unit for the Test application, which uses a MySQL database.
+        </description>
     </persistence-unit>
+
 </persistence>
