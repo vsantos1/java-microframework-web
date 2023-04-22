@@ -17,11 +17,25 @@ public class YamlFile {
 
     private String ddl;
 
+    private String driverClassName;
     private boolean showSql;
 
     private boolean formatSql;
 
     private YamlFile() {
+    }
+
+    public YamlFile(String url, String host, String port, String password, String username, String dialect, String ddl, String driverClassName, boolean showSql, boolean formatSql) {
+        this.url = url;
+        this.host = host;
+        this.port = port;
+        this.password = password;
+        this.username = username;
+        this.dialect = dialect;
+        this.ddl = ddl;
+        this.driverClassName = driverClassName;
+        this.showSql = showSql;
+        this.formatSql = formatSql;
     }
 
     public String getUrl() {
@@ -90,6 +104,22 @@ public class YamlFile {
 
     public boolean isFormatSql() {
         return formatSql;
+    }
+
+    public String getDialect() {
+        return dialect;
+    }
+
+    public void setDialect(String dialect) {
+        this.dialect = dialect;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
     }
 
     public void setFormatSql(boolean formatSql) {
