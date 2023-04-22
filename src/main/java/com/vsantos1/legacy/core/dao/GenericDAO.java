@@ -13,11 +13,10 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
 
 
     public GenericDAO() {
-        DatabaseFactory.loadYaml();
     }
 
     public static EntityManager getEntityManager() {
-        EntityManagerFactory factory = DatabaseFactory.getEntityManagerFactory();
+        EntityManagerFactory factory = DatabaseFactory.getEntityManagerFactory(null);
         return factory.createEntityManager();
     }
 
@@ -25,6 +24,7 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
     public T save(T entity) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
+
         try {
             Field id = entity.getClass().getDeclaredField("id");
             id.setAccessible(true);
@@ -40,11 +40,35 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
 
             return entity;
         } catch (IllegalAccessException | NoSuchFieldException e) {
-            throw new RuntimeException("Error while flushing data", e);
+            throw new RuntimeException("Error while inserting data", e);
         }
 
     }
 
+    @Override
+    public List<T> saveAll(List<T> entities, Class<T> clazz) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+
+        try {
+            for (T entity : entities) {
+                Field id = clazz.getDeclaredField("id");
+                id.setAccessible(true);
+                Object value = id.get(entity);
+                if (value == null) {
+                    em.persist(entity);
+                } else {
+                    em.merge(entity);
+                }
+            }
+            em.getTransaction().commit();
+            em.close();
+
+            return entities;
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            throw new RuntimeException("Error while flushing data", e);
+        }
+    }
 
     @Override
     public List<T> findAll(Class<T> clazz) {
@@ -71,10 +95,18 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
     }
 
 
-    // TODO: Implement this method
     @Override
     public void deleteById(ID id) {
-        return;
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+
+        try {
+            em.remove(id);
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting data", e);
+        }
     }
 
     public T findById(ID id, Class<T> clazz) {
