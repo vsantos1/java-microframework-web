@@ -10,14 +10,13 @@ public class ApplicationMigrationRunner {
 
     public static void run() {
         if (FACTORY == null) {
-            System.out.println("Database connection failed");
-            return;
+           throw new RuntimeException("Error creating EntityManagerFactory");
         }
 
         FACTORY.createEntityManager().getTransaction().begin();
         FACTORY.createEntityManager().getTransaction().commit();
         FACTORY.createEntityManager().close();
-        System.out.println();
+        FACTORY.close();
     }
 
 

@@ -2,8 +2,8 @@ package com.vsantos1.legacy.core.db;
 
 import com.vsantos1.legacy.core.config.LoadApplicationConfig;
 import com.vsantos1.legacy.core.config.YamlFile;
+import com.vsantos1.legacy.core.db.migrations.ApplicationMigrationRunner;
 import org.hibernate.cfg.AvailableSettings;
-import org.yaml.snakeyaml.Yaml;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,6 +14,13 @@ public class DatabaseFactory {
 
 
     private static final String PERSISTENCE_UNIT_NAME = "HireMe";
+
+
+    static {
+
+        ApplicationMigrationRunner.run();
+
+    }
 
     public static EntityManagerFactory getEntityManagerFactory(String persistenceUnitName) {
 
