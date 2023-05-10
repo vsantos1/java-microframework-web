@@ -16,16 +16,14 @@ public class DatabaseFactory {
     private static final String PERSISTENCE_UNIT_NAME = "HireMe";
 
 
-    static {
-
+    public DatabaseFactory() {
         ApplicationMigrationRunner.run();
-
     }
+
 
     public static EntityManagerFactory getEntityManagerFactory(String persistenceUnitName) {
 
         YamlFile yamlFile = LoadApplicationConfig.loadYaml();
-        assert yamlFile != null;
 
         Map<String, String> properties = new HashMap<>();
         properties.put(AvailableSettings.DIALECT, yamlFile.getdialect());
