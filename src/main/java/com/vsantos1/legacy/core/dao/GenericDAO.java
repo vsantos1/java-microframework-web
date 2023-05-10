@@ -2,7 +2,9 @@ package com.vsantos1.legacy.core.dao;
 
 
 import com.vsantos1.legacy.core.db.DatabaseFactory;
+import com.vsantos1.legacy.core.db.migrations.ApplicationMigrationRunner;
 import com.vsantos1.legacy.core.repository.CrudRepository;
+import org.hibernate.cfg.NotYetImplementedException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,9 +33,12 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
             Object value = id.get(entity);
             if (value == null) {
                 em.persist(entity);
-            } else {
+
+            }else{
                 em.merge(entity);
+
             }
+
             em.getTransaction().commit();
             em.close();
 
@@ -89,11 +94,10 @@ public class GenericDAO<T, ID> implements CrudRepository<T, ID> {
         }
     }
 
-    // TODO: Implement this method
 
     @Override
     public T update(T entity) {
-        return null;
+        throw new NotYetImplementedException("Update method not implemented yet");
     }
 
 
