@@ -3,6 +3,8 @@ package com.vsantos1.legacy.core.config;
 import com.vsantos1.legacy.core.db.DatabaseFactory;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.InputStream;
+
 public class LoadApplicationConfig extends YamlFile {
 
     private static final Yaml yaml = new Yaml();
@@ -12,19 +14,21 @@ public class LoadApplicationConfig extends YamlFile {
     }
 
     public static YamlFile loadYaml() {
-        try {
-            var inputStream = DatabaseFactory.class.getClassLoader().getResourceAsStream("application.yml");
-            YamlFile yamlFile = yaml.loadAs(inputStream, YamlFile.class);
 
-            String URL = yamlFile.getUrl() == null ? "" : yamlFile.getUrl();
-            return new LoadApplicationConfig(URL, yamlFile.getHost(), yamlFile.getPort(),
-                    yamlFile.getPassword(), yamlFile.getUsername(), yamlFile.getdialect(),
-                    yamlFile.getDdl(), yamlFile.getDriverClassName(), yamlFile.isShowSql(), yamlFile.isFormatSql());
 
-        } catch (Exception e) {
-            System.out.println("Error loading yaml file: " + e.getMessage());
+        InputStream inputStream = DatabaseFactory.class.getClassLoader().getResourceAsStream("application.yml");
+        YamlFile yamlFile = yaml.loadAs(inputStream, YamlFile.class);
+
+        if (yamlFile == null) {
+            throw new RuntimeException("Error loading application.yml, please check if the file exists");
         }
-        return null;
+
+        String URL = yamlFile.getUrl() == null ? "" : yamlFile.getUrl();
+        return new LoadApplicationConfig(URL, yamlFile.getHost(), yamlFile.getPort(),
+                yamlFile.getPassword(), yamlFile.getUsername(), yamlFile.getdialect(),
+                yamlFile.getDdl(), yamlFile.getDriverClassName(), yamlFile.isShowSql(), yamlFile.isFormatSql());
+
+
     }
 
 
