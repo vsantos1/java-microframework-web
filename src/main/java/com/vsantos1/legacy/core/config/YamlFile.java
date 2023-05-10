@@ -1,6 +1,5 @@
 package com.vsantos1.legacy.core.config;
 
-import com.vsantos1.legacy.core.enums.DDL;
 
 public class YamlFile {
 
@@ -22,8 +21,6 @@ public class YamlFile {
 
     private boolean formatSql;
 
-    private YamlFile() {
-    }
 
     public YamlFile(String url, String host, String port, String password, String username, String dialect, String ddl, String driverClassName, boolean showSql, boolean formatSql) {
         this.url = url;
