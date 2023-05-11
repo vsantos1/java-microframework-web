@@ -40,7 +40,7 @@ public class Controller extends HttpServlet {
     }
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) {
         String path = request.getPathInfo();
         String method = request.getMethod();
 
