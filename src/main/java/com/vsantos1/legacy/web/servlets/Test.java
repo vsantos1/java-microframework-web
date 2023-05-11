@@ -17,6 +17,11 @@ public class Test extends Controller {
 
     @RequestMapping(value = "/test", method = HttpMethod.GET, contentType = ContentType.APPLICATION_JSON)
     public void getExample(HttpServletResponse response) {
+        Response.status(HttpStatus.NO_CONTENT).build(response);
+
+    }
+    @RequestMapping(value = "/test/create", method = HttpMethod.POST, contentType = ContentType.APPLICATION_JSON)
+    public void putExample(HttpServletResponse response) {
 
         Response.status(HttpStatus.OK).body(new Category(2L, "name", "description")).build(response);
     }
@@ -27,4 +32,12 @@ public class Test extends Controller {
         Response.status(HttpStatus.OK).body(new Category(2L, "name", "description")).build(response);
 
     }
+
+    @RequestMapping(value = "/test/delete/{id}", method = HttpMethod.DELETE)
+    public void deleteExample(@PathVariable("id") Long id, HttpServletResponse response) {
+
+        Response.status(HttpStatus.NO_CONTENT).build(response);
+    }
+
+
 }
