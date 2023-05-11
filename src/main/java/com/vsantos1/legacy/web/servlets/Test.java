@@ -17,9 +17,16 @@ public class Test extends Controller {
 
     @RequestMapping(value = "/test", method = HttpMethod.GET, contentType = ContentType.APPLICATION_JSON)
     public void getExample(HttpServletResponse response) {
-        Response.status(HttpStatus.NO_CONTENT).build(response);
+        Response.status(HttpStatus.OK).body(new Category(2L, "name", "description")).build(response);
 
     }
+
+    @RequestMapping(value = "/test/{id}", method = HttpMethod.GET, contentType = ContentType.APPLICATION_JSON)
+    public void getByIdExample(@PathVariable("id") Long id, HttpServletResponse response) {
+        Response.status(HttpStatus.OK).body(new Category(2L, "name", "description")).build(response);
+
+    }
+
     @RequestMapping(value = "/test/create", method = HttpMethod.POST, contentType = ContentType.APPLICATION_JSON)
     public void putExample(HttpServletResponse response) {
 
