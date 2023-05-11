@@ -30,7 +30,7 @@ public class Test extends Controller {
     @RequestMapping(value = "/test/create", method = HttpMethod.POST, contentType = ContentType.APPLICATION_JSON)
     public void putExample(HttpServletResponse response) {
 
-        Response.status(HttpStatus.OK).body(new Category(2L, "name", "description")).build(response);
+        Response.status(HttpStatus.CREATED).body(new Category(2L, "name", "description")).build(response);
     }
 
     @RequestMapping(value = "/test/edit/{id}", method = HttpMethod.PUT, contentType = ContentType.APPLICATION_JSON)
