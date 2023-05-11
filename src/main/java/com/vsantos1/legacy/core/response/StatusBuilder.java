@@ -9,8 +9,8 @@ public class StatusBuilder<T> {
         this.status = status;
     }
 
-    public ResponseBuilder<T> body(T body) {
+    public ResponseEntity<T> body(T body) {
 
-        return new ResponseBuilder<>(status, body);
+        return new ResponseEntity<>(status, body);
     }
 }

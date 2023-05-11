@@ -23,6 +23,7 @@ public class ResponseEntity<T> {
             this.execute(response);
 
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
