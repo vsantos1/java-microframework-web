@@ -22,6 +22,8 @@ public class YamlFile {
     private boolean formatSql;
 
 
+    public YamlFile() {
+    }
     public YamlFile(String url, String host, String port, String password, String username, String dialect, String ddl, String driverClassName, boolean showSql, boolean formatSql) {
         this.url = url;
         this.host = host;
