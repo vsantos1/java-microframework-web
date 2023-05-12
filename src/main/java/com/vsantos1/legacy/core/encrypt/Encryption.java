@@ -12,7 +12,7 @@ public class Encryption {
     }
 
 
-    public BCrypt.Hasher getEncrypter() {
+    public BCrypt.Hasher getEncrypt() {
         return BCrypt.withDefaults();
     }
 
@@ -22,7 +22,7 @@ public class Encryption {
 
     public String generateHash(String hash) {
 
-        return getEncrypter().hashToString(STRENGTH, hash.toCharArray());
+        return getEncrypt().hashToString(STRENGTH, hash.toCharArray());
     }
 
     public boolean compareHash(String hashed, String hash) {
