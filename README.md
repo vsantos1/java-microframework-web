@@ -47,7 +47,7 @@ produção.
 - [x] Json serialization
 - [x] Migration runner
 - [x] Json deserialization
-- [ ] Object mapper
+- [x] Object mapper
 - [x] Generic DAO (Data Access Object) for database access
 - [x] Encryption handler
 - [x] Yaml configuration file
